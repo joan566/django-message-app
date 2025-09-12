@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mensajes del Club Shalom</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Fuente elegante -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+
+    <style>
+        /* ——— Base ——— */
+        body {
+            background: url("https://th.bing.com/th/id/R.17190e8f35c4d969210f9d30202bf45c?rik=kYf1YijstWMJVw&pid=ImgRaw&r=0") no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Playfair Display', serif;
+            color: #4B2C5E; /* Morado profundo */
+            padding: 40px 20px;
+            overflow-x: hidden;
+        }
+
+        .container { 
+            max-width: 980px; 
+        }
+
+        /* ——— Título ——— */
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #fff; /* Blanco para contraste */
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.5); /* Brillo para mejor visibilidad */
+            letter-spacing: .4px;
+        }
+        h1::after{
+            content:"";
+            display:block;
+            width:140px;height:4px;
+            margin:12px auto 0;
+            background: linear-gradient(90deg,#ffffff, #C9A0DC);
+            border-radius:4px;
+            opacity:.8;
+        }
+
+        /* ——— Tarjetas ——— */
+        .mensaje-card {
+            background-color: rgba(255, 255, 255, 0.15); /* muy transparente */
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s ease; /* <- mismo que el botón */
+        }
+
+        .mensaje-card:hover {
+            background: linear-gradient(to right, #B583D3, #DAB6F5); /* mismo degradado del botón hover */
+            color: #fff; /* cambia texto a blanco */
+            transform: scale(1.05); /* mismo efecto de agrandarse */
+            box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+        }
+
+
+        .mensaje-nombre {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: #4B2C5E;
+        }
+
+        .mensaje-contenido {
+            font-size: 1rem;
+            line-height: 1.65;
+            color: #333; /* Más legible sobre fondo claro */
+        }
+
+        .mensaje-fecha {
+            font-size: 0.88rem;
+            color: #666;
+            letter-spacing: .4px;
+        }
+
+        /* ——— Animación de entrada ——— */
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(16px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .mensaje-card { opacity: 0; animation: fadeInUp .6s ease forwards; }
+        .mensaje-card:nth-of-type(1){ animation-delay:.10s; }
+        .mensaje-card:nth-of-type(2){ animation-delay:.20s; }
+        .mensaje-card:nth-of-type(3){ animation-delay:.30s; }
+        .mensaje-card:nth-of-type(4){ animation-delay:.40s; }
+        .mensaje-card:nth-of-type(5){ animation-delay:.50s; }
+
+        /* Botón volver */
+        .volver {
+            display: inline-block;
+            margin: 20px auto;
+            padding: 12px 25px;
+            background-color: rgba(255, 255, 255, 0.15); /* muy transparente */
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #4B2C5E;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .volver:hover {
+            background: linear-gradient(to right, #B583D3, #DAB6F5);
+            color: #fff;
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+        }
+
+        /* ——— Ajustes responsive ——— */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .mensaje-card {
+                padding: 15px;
+                font-size: 0.95rem;
+            }
+
+            .mensaje-nombre {
+                font-size: 1.1rem;
+            }
+
+            .volver {
+                width: 100%;
+                display: block;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .mensaje-card {
+                font-size: 0.9rem;
+            }
+
+            .mensaje-nombre {
+                font-size: 1rem;
+            }
+        }
+
+        /* Enlaces a mensajes como texto elegante */
+        .mensaje-link {
+            color: #6B4E9E; /* Violeta elegante */
+            text-decoration: none; /* Quita el subrayado */
+            font-weight: 500;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        /* Hover: cambia el color y agrega un pequeño brillo */
+        .mensaje-link:hover {
+            color: #dfd7e9ff; /* Violeta más claro al pasar el mouse */
+            text-shadow: 1px 1px 4px rgba(155, 112, 209, 0.6);
+        }
+    </style>
+
+</head>
+<body>
+
+    <a href="{% url 'index' %}" class = "volver">Volver al inicio</a>
+    <div class="container">
+        <h1>💌 Mensajes del Club Shalom 💌</h1>
+
+        {% if mensajes %}
+            {% for mensaje in mensajes %}
+                <div class="mensaje-card">
+                    <div class="mensaje-nombre">{{ mensaje.nombre }}</div>
+                    <a href="{% url 'mostrar_mensaje' mensaje.id %}" class = 'mensaje-link'>Haz clic aquí para ver el mensaje</a>
+                    <div class="mensaje-fecha">{{ mensaje.fecha|date:"d M Y, H:i" }}</div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-center">Aún no hay mensajes. Sé el primero en dejar uno.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mensaje</title>
+
+  <!-- Fuente elegante -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+    background: url("https://th.bing.com/th/id/R.17190e8f35c4d969210f9d30202bf45c?rik=kYf1YijstWMJVw&pid=ImgRaw&r=0") no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Playfair Display', serif;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    }
+
+    .mensaje-container {
+    background-color: rgba(75, 44, 94, 0.85);
+    padding: 30px;
+    border-radius: 16px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    text-align: center;
+    transform: translateY(30px);
+    opacity: 0;
+    animation: aparecer 0.8s ease forwards;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .mensaje-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    }
+
+    /* Animación de entrada */
+    @keyframes aparecer {
+    0% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    }
+
+    h1 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #F0E5FF;
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.4);
+    }
+
+    p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    }
+
+    .fecha {
+    font-size: 0.9rem;
+    color: #E0D6F5;
+    margin-top: 10px;
+    }
+
+    .volver {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 25px;
+    background: linear-gradient(to right, #C9A0DC, #EAD9FA);
+    color: #4B2C5E;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    }
+
+    .volver:hover {
+    background: linear-gradient(to right, #B583D3, #DAB6F5);
+    color: #fff;
+    transform: scale(1.05);
+    }
+</style>
+</head>
+<body>
+
+  <div class="mensaje-container">
+    <h1>{{ mensaje.nombre }}</h1>
+    <p>{{ mensaje.contenido }}</p>
+    {% if mensaje.fecha %}
+      <div class="fecha">{{ mensaje.fecha|date:"d M Y, H:i" }}</div>
+    {% endif %}
+    <a href="{% url 'mensajes_club' %}" class="volver">Volver atras</a>
+  </div>
+
+</body>
+</html>

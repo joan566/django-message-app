@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mensajes cuando estés...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Fuente elegante -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background: url("https://th.bing.com/th/id/R.17190e8f35c4d969210f9d30202bf45c?rik=kYf1YijstWMJVw&pid=ImgRaw&r=0") no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-family: 'Raleway', sans-serif;
+      color: #fff;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+      overflow-x: hidden;
+    }
+
+    .volver-container {
+      text-align: left;
+      padding: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .volver-container {
+        text-align: center; /* centrado en móviles */
+      }
+    }
+
+    .volver {
+      display: inline-block;
+      padding: 12px 25px;
+      margin-top: 30px;
+      background-color: rgba(255, 255, 255, 0.15); /* muy transparente */
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #4B2C5E;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(75,44,94,0.25);
+      transition: all 0.3s ease;
+    }
+
+    .volver:hover {
+      background: linear-gradient(to right, #B583D3, #DAB6F5);
+      color: #fff;
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(75,44,94,0.35);
+    }
+
+    .contenedor {
+      max-width: 1000px;
+      margin: 0px auto 40px;
+      padding: 0px;
+      text-align: center;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      justify-items: center;
+    }
+
+    h1 {
+      grid-column: 1 / -1;
+      font-size: 2.4em;
+      margin-bottom: 40px;
+      color: #5a4e4e;
+    }
+
+    .tarjeta {
+      background-color: rgba(255, 255, 255, 0.15); /* muy transparente */
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      padding: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 6px solid #ccc;
+      text-align: left;
+      width: 100%;
+      max-width: 280px;
+    }
+
+    .tarjeta:hover {
+      background: linear-gradient(to right, #B583D3, #DAB6F5); /* mismo degradado del botón hover */
+      color: #fff; /* cambia texto a blanco */
+      transform: scale(1.05); /* mismo efecto de agrandarse */
+      box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+    }
+
+    .tarjeta h2 {
+      font-size: 1.6em;
+      margin-bottom: 12px;
+      color: #6b5c5c;
+    }
+
+    .tarjeta p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      margin: 5px 0;
+    }
+
+    /* Colores emocionales */
+    .triste { border-left-color: #a3b1c6; }
+    .ansioso { border-left-color: #c6a3a3; }
+    .solo { border-left-color: #b1c6a3; }
+    .esperanza { border-left-color: #a3c6b1; }
+    .culpa { border-left-color: #c6b1a3; }
+    .confundido { border-left-color: #b1a3c6; }
+    .vacio { border-left-color: #d1d1d1; }
+
+    /* Emoji estilo */
+    .emoji {
+      margin-right: 8px;
+    }
+
+    /* Ajuste: la 2ª fila tendrá solo 2 tarjetas centradas */
+    .tarjeta:nth-child(5) {
+      grid-column: 2;
+    }
+
+    @media (max-width: 900px) {
+      .contenedor {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .tarjeta:nth-child(5) {
+        grid-column: auto;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .contenedor {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Botón de volver fuera del grid -->
+  <div class="volver-container">
+    <a href="{% url 'index' %}" class="volver">Volver al inicio</a>
+  </div>
+
+  <div class="contenedor">
+    <h1>Mensajes para cuando estés...</h1>
+
+    {% for emocion, mensaje in mensajes_por_emocion.items %}
+      <div class="tarjeta {% if emocion %}{{ emocion }}{% else %}vacio{% endif %}">
+        <h2>
+          {% if emocion %}
+            {% if emocion == 'triste' %}😢{% elif emocion == 'ansioso' %}😰
+            {% elif emocion == 'solo' %}🌙{% elif emocion == 'esperanza' %}🌱
+            {% elif emocion == 'culpa' %}😔{% elif emocion == 'confundido' %}🤔
+            {% else %}💭{% endif %}
+          {% else %}
+            💬
+          {% endif %}
+          Cuando estés {{ emocion|default:"desconocido" }}
+        </h2>
+
+        {% if mensaje %}
+          {% if mensaje|length > 1 %}
+            {% for m in mensaje %}
+              <p>{{ m.mensaje }}</p>
+            {% endfor %}
+          {% else %}
+            <p>{{ mensaje.mensaje }}</p>
+          {% endif %}
+        {% else %}
+          <p>No hay mensajes disponibles para esta emoción.</p>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</body>
+</html>

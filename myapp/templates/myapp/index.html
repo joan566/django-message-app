@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Día del Amor y la Amistad</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Fuentes elegantes -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Raleway:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background: url("https://th.bing.com/th/id/R.17190e8f35c4d969210f9d30202bf45c?rik=kYf1YijstWMJVw&pid=ImgRaw&r=0") no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-family: 'Raleway', sans-serif;
+      color: #fff;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+      overflow-x: hidden;
+    }
+
+    header {
+      background: rgba(75, 44, 94, 0.6); /* morado semitransparente */
+      padding: 30px 20px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: bold;
+      font-size: 2.3rem;
+      margin: 0;
+      animation: fadeInDown 1s ease forwards;
+    }
+
+    .card-option {
+      background-color: rgba(255, 255, 255, 0.15); /* muy transparente */
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 16px;
+      padding: 20px;
+      backdrop-filter: blur(6px); /* efecto vidrio */
+      box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+    }
+
+    .card-option:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 16px 28px rgba(0,0,0,0.3);
+    }
+
+    .card-title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .card-body p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #f0e6ff;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    footer {
+      background: rgba(75, 44, 94, 0.6);
+      text-align: center;
+      padding: 12px;
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+    /* Animaciones */
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .row .col-md-4:nth-child(1) .card-option { animation: fadeInDown 0.8s ease forwards; }
+    .row .col-md-4:nth-child(2) .card-option { animation: fadeInDown 1.2s ease forwards; }
+    .row .col-md-4:nth-child(3) .card-option { animation: fadeInDown 1.6s ease forwards; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>✨ Para mi amiga secreta ✨</h1>
+  </header>
+
+  <main class="container text-center my-5">
+    <div class="row justify-content-center g-4">
+      <div class="col-md-4">
+        <a href="{% url 'mensajes_emociones' %}">
+          <div class="card card-option">
+            <div class="card-body">
+              <p class="card-title">Mensajes para cuando estés...</p>
+              <p>Palabras que te acompañan en cada emoción: alegría, tristeza, enojo y más.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="{% url 'mensajes_club' %}">
+          <div class="card card-option">
+            <div class="card-body">
+              <p class="card-title">Mensajes de tu club Shalom</p>
+              <p>Mensajes bonitos de quienes te aprecian y te admiran profundamente.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="{% url 'opinion_personal' %}">
+          <div class="card card-option">
+            <div class="card-body">
+              <p class="card-title">Mensaje de cariño...</p>
+              <p>Un espacio íntimo donde comparto lo que pienso y valoro de ti.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    Hecho a mano ✨ | Día del Amor y la Amistad
+  </footer>
+</body>
+</html>
